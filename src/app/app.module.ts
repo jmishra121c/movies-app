@@ -17,7 +17,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { DropdownModule } from 'primeng/dropdown';
 import { MovieComponent } from './pages/movie/movie.component';
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
-
+import { ImageModule } from 'primeng/image';
+import { CarouselModule } from 'primeng/carousel';
+import { GenresComponent } from './pages/genres/genres.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { VideoEmbedComponent } from './components/video-embed/video-embed.compon
     ItemsBannerComponent,
     ItemComponent,
     MovieComponent,
-    VideoEmbedComponent
+    VideoEmbedComponent,
+    GenresComponent
   ],
   imports: [
     AppRoutingModule,
@@ -38,7 +41,9 @@ import { VideoEmbedComponent } from './components/video-embed/video-embed.compon
     TabViewModule,
     DropdownModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ImageModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

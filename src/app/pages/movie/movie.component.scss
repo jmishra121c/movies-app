@@ -25,3 +25,19 @@
     margin-right: 10px;
   }
 }
+.name {
+  justify-content: center;
+  text-align: center;
+}
+.castHead {
+  background-color: $bgColorLight;
+}
+.heading {
+  color: $primaryColor;
+  width: 150px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+}

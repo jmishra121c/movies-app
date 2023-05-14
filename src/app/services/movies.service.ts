@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieDto, MovieVideoDto } from '../models/movie';
+import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { GenresDto } from '../models/genres';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,12 +36,33 @@ export class MoviesService {
       })
     );
   }
-
+  getMovieImages(id: string) {
+    return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
+  }
+  getMovieCredits(id: string) {
+    return this.http.get<MovieCredits>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
+  }
   getTvShows(type: string = 'popular', count: number = 12) {
     return this.http.get<MovieDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
       switchMap((res) => {
         return of(res.results.slice(0, count));
       })
     );
+  }
+  getGenres() {
+    return this.http.get<GenresDto>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.genres);
+      })
+    );
+  }
+  getMoviesByGenre(genreId: string, pageNumber: number) {
+    return this.http
+      .get<MovieDto>(`${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
   }
 }
